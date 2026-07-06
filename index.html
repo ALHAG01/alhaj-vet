@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>صيدلية ابو الجدائل البيطرية</title>
   <meta name="description" content="صيدلية ابو الجدائل البيطرية - أدوية ومستلزمات بيطرية، طلب عبر واتساب، توصيل حسب الموقع، واستشارة بيطرية." />
+
   <style>
     :root {
       --main: #0f766e;
@@ -34,10 +36,36 @@
         var(--bg);
       color: var(--text);
       line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(rgba(15, 118, 110, .13) 1px, transparent 1px),
+        radial-gradient(rgba(245, 158, 11, .12) 1px, transparent 1px);
+      background-size: 28px 28px, 42px 42px;
+      background-position: 0 0, 8px 10px;
+      opacity: .22;
+      z-index: -1;
     }
 
     a { color: inherit; text-decoration: none; }
     button, input { font-family: inherit; }
+
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--gold), #14b8a6, var(--main));
+      z-index: 999;
+      box-shadow: 0 4px 14px rgba(20,184,166,.35);
+    }
 
     .top-note {
       background: var(--dark);
@@ -56,6 +84,10 @@
       border-bottom: 1px solid rgba(229, 231, 235, 0.85);
     }
 
+    .nav.is-scrolled {
+      box-shadow: 0 10px 28px rgba(15, 118, 110, 0.08);
+    }
+
     .nav-inner {
       max-width: 1050px;
       margin: auto;
@@ -70,13 +102,16 @@
       display: flex;
       align-items: center;
       gap: 11px;
+      min-width: 0;
     }
 
     .logo {
       width: 46px;
       height: 46px;
       border-radius: 16px;
-      background: linear-gradient(135deg, var(--main), #14b8a6);
+      background:
+        radial-gradient(circle at 25% 20%, rgba(255,255,255,.35), transparent 24%),
+        linear-gradient(135deg, var(--main), #14b8a6);
       color: white;
       display: grid;
       place-items: center;
@@ -84,6 +119,7 @@
       font-weight: 900;
       box-shadow: 0 12px 26px rgba(15, 118, 110, 0.22);
       position: relative;
+      flex: 0 0 auto;
     }
 
     .logo::after {
@@ -96,6 +132,7 @@
       left: -2px;
       bottom: -2px;
       border: 3px solid white;
+      animation: pulseDot 2.4s ease-in-out infinite;
     }
 
     .brand-title {
@@ -103,12 +140,14 @@
       font-weight: 900;
       font-size: 18px;
       line-height: 1.2;
+      white-space: nowrap;
     }
 
     .brand-sub {
       color: var(--muted);
       font-size: 12px;
       margin-top: 2px;
+      white-space: nowrap;
     }
 
     .nav-links {
@@ -122,17 +161,6 @@
     .nav-links a { transition: 0.2s; }
     .nav-links a:hover { color: var(--main); }
 
-    .wa-top {
-      background: #25d366;
-      color: white;
-      border-radius: 999px;
-      padding: 10px 14px;
-      font-weight: 900;
-      font-size: 13px;
-      white-space: nowrap;
-      box-shadow: 0 10px 20px rgba(37, 211, 102, 0.20);
-    }
-
     .hero {
       max-width: 1050px;
       margin: auto;
@@ -141,6 +169,35 @@
       grid-template-columns: 1.05fr 0.95fr;
       gap: 28px;
       align-items: center;
+      position: relative;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(.2px);
+      opacity: .7;
+      z-index: -1;
+    }
+
+    .hero::before {
+      width: 80px;
+      height: 80px;
+      background: rgba(20,184,166,.12);
+      right: -20px;
+      top: 55px;
+      animation: floatSlow 8s ease-in-out infinite;
+    }
+
+    .hero::after {
+      width: 48px;
+      height: 48px;
+      background: rgba(245,158,11,.16);
+      left: 20px;
+      bottom: 40px;
+      animation: floatSlow 7s ease-in-out infinite reverse;
     }
 
     .badge {
@@ -209,6 +266,25 @@
       cursor: pointer;
       transition: 0.22s;
       font-size: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before,
+    .wa-btn::before,
+    .float-wa::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,.28), transparent);
+      transform: translateX(115%);
+      transition: .6s ease;
+    }
+
+    .btn:hover::before,
+    .wa-btn:hover::before,
+    .float-wa:hover::before {
+      transform: translateX(-115%);
     }
 
     .btn:hover {
@@ -216,7 +292,7 @@
       box-shadow: 0 13px 24px rgba(0,0,0,0.10);
     }
 
-    .btn-main { background: var(--main); color: white; }
+    .btn-main { background: linear-gradient(135deg, var(--main), #14b8a6); color: white; }
     .btn-light { background: white; color: var(--main); border: 1px solid #bdeee2; }
 
     .mini-info {
@@ -266,19 +342,44 @@
       transform: rotate(-15deg);
     }
 
-    .glass-box {
+    .pharmacy-photo {
       position: relative;
       z-index: 1;
-      background: linear-gradient(135deg, rgba(15,118,110,0.96), rgba(20,184,166,0.86));
+      min-height: 205px;
+      border-radius: 28px;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(15,118,110,.95), rgba(20,184,166,.82));
       color: white;
-      border-radius: 26px;
       padding: 22px;
-      margin-bottom: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      box-shadow: 0 16px 34px rgba(15,118,110,.18);
     }
 
-    .glass-box small { opacity: 0.9; }
-    .glass-box h2 { margin: 8px 0 10px; font-size: 26px; line-height: 1.3; }
-    .glass-box p { margin: 0; opacity: 0.95; font-size: 14px; }
+    .pharmacy-photo img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .pharmacy-photo::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(18,63,59,.18), rgba(18,63,59,.78)),
+        radial-gradient(circle at top right, rgba(245,158,11,.35), transparent 38%);
+      z-index: -1;
+    }
+
+    .pharmacy-photo small { opacity: .95; font-weight: 700; }
+    .pharmacy-photo h2 { margin: 7px 0 8px; font-size: 25px; line-height: 1.3; }
+    .pharmacy-photo p { margin: 0; opacity: 0.95; font-size: 14px; max-width: 420px; }
 
     .hero-products {
       position: relative;
@@ -286,6 +387,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
+      margin-top: 13px;
     }
 
     .hero-mini {
@@ -293,6 +395,12 @@
       border: 1px solid var(--line);
       border-radius: 22px;
       padding: 14px;
+      transition: .22s ease;
+    }
+
+    .hero-mini:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 22px rgba(15, 118, 110, 0.07);
     }
 
     .hero-mini-icon {
@@ -400,6 +508,17 @@
       overflow: hidden;
     }
 
+    .cat::before {
+      content: "";
+      position: absolute;
+      inset: -60% -40% auto auto;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(20,184,166,.11);
+      transition: .25s ease;
+    }
+
     .cat::after {
       content: "";
       position: absolute;
@@ -418,6 +537,11 @@
       box-shadow: 0 12px 24px rgba(15,118,110,0.08);
     }
 
+    .cat:hover::before,
+    .cat.active::before {
+      transform: scale(1.7);
+    }
+
     .cat.active::after, .cat:hover::after {
       opacity: 1;
       transform: translateY(0);
@@ -432,10 +556,12 @@
       display: grid;
       place-items: center;
       font-size: 31px;
+      position: relative;
+      z-index: 1;
     }
 
-    .cat strong { display: block; color: var(--dark); font-size: 14px; }
-    .cat span { color: var(--muted); font-size: 12px; }
+    .cat strong { display: block; color: var(--dark); font-size: 14px; position: relative; z-index: 1; }
+    .cat span { color: var(--muted); font-size: 12px; position: relative; z-index: 1; }
 
     .products {
       display: grid;
@@ -456,10 +582,25 @@
       overflow: hidden;
     }
 
+    .product::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(20,184,166,.07), transparent 38%),
+        radial-gradient(circle at top left, rgba(245,158,11,.11), transparent 28%);
+      opacity: 0;
+      transition: .25s ease;
+    }
+
     .product:hover {
-      transform: translateY(-4px);
+      transform: translateY(-6px);
       box-shadow: var(--shadow);
       border-color: #c7f2e7;
+    }
+
+    .product:hover::before {
+      opacity: 1;
     }
 
     .product-tag {
@@ -473,7 +614,7 @@
       font-weight: 900;
       border-radius: 999px;
       padding: 4px 9px;
-      z-index: 1;
+      z-index: 2;
     }
 
     .product-img {
@@ -484,15 +625,31 @@
       place-items: center;
       font-size: 50px;
       margin-bottom: 11px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
     }
 
-    .product h3 { margin: 0 0 6px; font-size: 17px; line-height: 1.45; color: #111827; }
-    .product p { margin: 0 0 10px; color: var(--muted); font-size: 13px; min-height: 45px; }
+    .product-img::after {
+      content: "";
+      position: absolute;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 1px solid rgba(15,118,110,.14);
+      left: 18px;
+      bottom: -26px;
+    }
+
+    .product h3 { margin: 0 0 6px; font-size: 17px; line-height: 1.45; color: #111827; position: relative; z-index: 1; }
+    .product p { margin: 0 0 10px; color: var(--muted); font-size: 13px; min-height: 45px; position: relative; z-index: 1; }
 
     .product-bottom {
       margin-top: auto;
       border-top: 1px solid var(--line);
       padding-top: 10px;
+      position: relative;
+      z-index: 1;
     }
 
     .price-row {
@@ -525,6 +682,8 @@
       font-weight: 900;
       font-size: 14px;
       transition: 0.2s;
+      position: relative;
+      overflow: hidden;
     }
 
     .wa-btn { background: #25d366; color: white; }
@@ -556,14 +715,27 @@
       border-radius: 24px;
       padding: 20px;
       box-shadow: 0 12px 30px rgba(15,118,110,0.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .info-card::after {
+      content: "";
+      position: absolute;
+      left: -36px;
+      top: -36px;
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      background: rgba(20,184,166,.10);
     }
 
     .info-card.special {
       background: radial-gradient(circle at top left, rgba(245,158,11,0.20), transparent 35%), white;
     }
 
-    .info-card h3 { margin: 0 0 8px; color: var(--dark); font-size: 21px; }
-    .info-card p { margin: 0 0 14px; color: #55606f; font-size: 14px; }
+    .info-card h3 { margin: 0 0 8px; color: var(--dark); font-size: 21px; position: relative; z-index: 1; }
+    .info-card p { margin: 0 0 14px; color: #55606f; font-size: 14px; position: relative; z-index: 1; }
 
     .footer {
       background: var(--dark);
@@ -580,39 +752,7 @@
       left: 16px;
       bottom: 16px;
       z-index: 70;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      align-items: flex-start;
-    }
-
-    .chat-panel {
-      display: none;
-      width: 320px;
-      max-width: calc(100vw - 32px);
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      box-shadow: 0 25px 60px rgba(0,0,0,0.22);
-      overflow: hidden;
-    }
-
-    .chat-head { background: var(--main); color: white; padding: 13px 15px; font-weight: 900; }
-    .chat-body { padding: 14px; }
-    .chat-msg { background: #f3f4f6; border-radius: 16px; padding: 10px 12px; color: #374151; font-size: 14px; margin-bottom: 10px; }
-
-    .chat-option {
       display: block;
-      width: 100%;
-      border: 1px solid #dbe8e5;
-      background: #f8fffd;
-      color: var(--dark);
-      border-radius: 14px;
-      padding: 10px;
-      text-align: right;
-      margin-top: 8px;
-      cursor: pointer;
-      font-weight: 900;
     }
 
     .float-btn {
@@ -628,13 +768,56 @@
       gap: 7px;
     }
 
-    .float-chat { background: var(--main); }
-    .float-wa { background: #25d366; }
+    .float-wa {
+      background: #25d366;
+      transition: .2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .float-wa:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 38px rgba(37,211,102,.25);
+    }
+
+    .welcome-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .paw-run {
+      display: inline-flex;
+      gap: 3px;
+    }
+
+    .paw-run span {
+      display: inline-block;
+      font-size: 13px;
+      opacity: .9;
+      animation: pawBounce 1.2s ease-in-out infinite;
+    }
+
+    .paw-run span:nth-child(2) { animation-delay: .12s; }
+    .paw-run span:nth-child(3) { animation-delay: .24s; }
+    .paw-run span:nth-child(4) { animation-delay: .36s; }
+    .paw-run span:nth-child(5) { animation-delay: .48s; }
 
     .fade-in {
       opacity: 0;
       transform: translateY(16px);
       animation: showUp 0.7s ease forwards;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .delay-1 { animation-delay: 0.08s; }
@@ -650,6 +833,28 @@
       50% { transform: translateY(-5px); }
     }
 
+    @keyframes floatSlow {
+      0%, 100% { transform: translate(0,0); }
+      50% { transform: translate(12px,-14px); }
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245,158,11,.3); }
+      50% { transform: scale(1.08); box-shadow: 0 0 0 7px rgba(245,158,11,0); }
+    }
+
+    @keyframes welcomeMobileMove {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(18px); }
+      50% { transform: translateX(0); }
+      75% { transform: translateX(-18px); }
+    }
+
+    @keyframes pawBounce {
+      0%, 100% { transform: translateY(0) rotate(0deg); opacity: .65; }
+      50% { transform: translateY(-4px) rotate(-8deg); opacity: 1; }
+    }
+
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; padding-top: 32px; }
       .hero-card { min-height: auto; }
@@ -661,12 +866,30 @@
       .top-note { font-size: 12px; }
       .nav-inner { padding: 10px 12px; }
       .brand-sub { display: none; }
-      .brand-title { font-size: 16px; }
+      .brand-title {
+        font-size: 16px;
+        max-width: 210px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
       .logo { width: 42px; height: 42px; }
       .hero { padding: 28px 14px 18px; }
       .hero-actions { display: grid; grid-template-columns: 1fr; }
       .btn { width: 100%; }
-      .hero-card { display: none; }
+      .badge {
+        animation: welcomeMobileMove 3.5s ease-in-out infinite;
+      }
+      .hero-card {
+        display: block;
+        min-height: 0;
+        padding: 12px;
+        border-radius: 28px;
+      }
+      .pharmacy-photo {
+        min-height: 185px;
+        border-radius: 22px;
+      }
+      .hero-products { display: none; }
       .container { padding: 10px 14px 50px; }
       .search-row { display: grid; grid-template-columns: 1fr; }
       .search-row button { padding: 12px; }
@@ -679,299 +902,14 @@
       .float-wa { padding: 13px 15px; }
     }
 
-
-    /* ===== لمسات احترافية إضافية ===== */
-    .scroll-progress {
-      position: fixed;
-      top: 0;
-      right: 0;
-      height: 3px;
-      width: 0%;
-      background: linear-gradient(90deg, var(--gold), #14b8a6, var(--main));
-      z-index: 999;
-      box-shadow: 0 4px 14px rgba(20,184,166,.35);
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        radial-gradient(rgba(15, 118, 110, .13) 1px, transparent 1px),
-        radial-gradient(rgba(245, 158, 11, .12) 1px, transparent 1px);
-      background-size: 28px 28px, 42px 42px;
-      background-position: 0 0, 8px 10px;
-      opacity: .22;
-      z-index: -1;
-    }
-
-    .nav.is-scrolled {
-      box-shadow: 0 10px 28px rgba(15, 118, 110, 0.08);
-    }
-
-    .wa-top,
-    .wa-btn,
-    .float-wa,
-    .btn-main {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .wa-top::before,
-    .wa-btn::before,
-    .float-wa::before,
-    .btn-main::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,.28), transparent);
-      transform: translateX(115%);
-      transition: .6s ease;
-    }
-
-    .wa-top:hover::before,
-    .wa-btn:hover::before,
-    .float-wa:hover::before,
-    .btn-main:hover::before {
-      transform: translateX(-115%);
-    }
-
-    .logo {
-      background:
-        radial-gradient(circle at 25% 20%, rgba(255,255,255,.35), transparent 24%),
-        linear-gradient(135deg, var(--main), #14b8a6);
-    }
-
-    .logo::after {
-      animation: pulseDot 2.4s ease-in-out infinite;
-    }
-
-    .hero {
-      position: relative;
-    }
-
-    .hero::before,
-    .hero::after {
-      content: "";
-      position: absolute;
-      border-radius: 999px;
-      filter: blur(.2px);
-      opacity: .7;
-      z-index: -1;
-    }
-
-    .hero::before {
-      width: 80px;
-      height: 80px;
-      background: rgba(20,184,166,.12);
-      right: -20px;
-      top: 55px;
-      animation: floatSlow 8s ease-in-out infinite;
-    }
-
-    .hero::after {
-      width: 48px;
-      height: 48px;
-      background: rgba(245,158,11,.16);
-      left: 20px;
-      bottom: 40px;
-      animation: floatSlow 7s ease-in-out infinite reverse;
-    }
-
-    .pharmacy-photo {
-      position: relative;
-      z-index: 1;
-      min-height: 205px;
-      border-radius: 28px;
-      overflow: hidden;
-      background:
-        linear-gradient(135deg, rgba(15,118,110,.95), rgba(20,184,166,.82));
-      color: white;
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      box-shadow: 0 16px 34px rgba(15,118,110,.18);
-    }
-
-    .pharmacy-photo img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -2;
-    }
-
-    .pharmacy-photo::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(180deg, rgba(18,63,59,.18), rgba(18,63,59,.78)),
-        radial-gradient(circle at top right, rgba(245,158,11,.35), transparent 38%);
-      z-index: -1;
-    }
-
-    .pharmacy-photo small {
-      opacity: .95;
-      font-weight: 700;
-    }
-
-    .pharmacy-photo h2 {
-      margin: 7px 0 8px;
-      font-size: 25px;
-      line-height: 1.3;
-    }
-
-    .pharmacy-photo p {
-      margin: 0;
-      opacity: 0.95;
-      font-size: 14px;
-      max-width: 420px;
-    }
-
-    .cat::before,
-    .product::before,
-    .info-card::after {
-      content: "";
-      position: absolute;
-      pointer-events: none;
-    }
-
-    .cat::before {
-      inset: -60% -40% auto auto;
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: rgba(20,184,166,.11);
-      transition: .25s ease;
-    }
-
-    .cat:hover::before,
-    .cat.active::before {
-      transform: scale(1.7);
-    }
-
-    .product::before {
-      inset: 0;
-      background:
-        linear-gradient(135deg, rgba(20,184,166,.07), transparent 38%),
-        radial-gradient(circle at top left, rgba(245,158,11,.11), transparent 28%);
-      opacity: 0;
-      transition: .25s ease;
-    }
-
-    .product:hover::before {
-      opacity: 1;
-    }
-
-    .product-img {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .product-img::after {
-      content: "";
-      position: absolute;
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      border: 1px solid rgba(15,118,110,.14);
-      left: 18px;
-      bottom: -26px;
-    }
-
-    .product h3,
-    .product p,
-    .product-bottom,
-    .product-tag {
-      position: relative;
-      z-index: 1;
-    }
-
-    .product:hover {
-      transform: translateY(-6px);
-    }
-
-    .info-card {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .info-card::after {
-      left: -36px;
-      top: -36px;
-      width: 92px;
-      height: 92px;
-      border-radius: 50%;
-      background: rgba(20,184,166,.10);
-    }
-
-    .floating {
-      display: block;
-    }
-
-    .float-wa {
-      transition: .2s ease;
-    }
-
-    .float-wa:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 18px 38px rgba(37,211,102,.25);
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(22px);
-      transition: opacity .7s ease, transform .7s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @keyframes floatSlow {
-      0%, 100% { transform: translate(0,0); }
-      50% { transform: translate(12px,-14px); }
-    }
-
-    @keyframes pulseDot {
-      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245,158,11,.3); }
-      50% { transform: scale(1.08); box-shadow: 0 0 0 7px rgba(245,158,11,0); }
-    }
-
-    @media (max-width: 620px) {
-      .hero-card {
-        display: block;
-        min-height: 0;
-        padding: 12px;
-        border-radius: 28px;
-      }
-
-      .pharmacy-photo {
-        min-height: 185px;
-        border-radius: 22px;
-      }
-
-      .hero-products {
-        display: none;
-      }
-    }
-
     @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
+      *, *::before, *::after {
         animation-duration: .01ms !important;
         animation-iteration-count: 1 !important;
         scroll-behavior: auto !important;
         transition-duration: .01ms !important;
       }
     }
-
   </style>
 </head>
 
@@ -995,15 +933,21 @@
         <a href="#delivery">التوصيل</a>
         <a href="#consultation">الاستشارة</a>
       </div>
-
-      <a class="wa-top" href="https://wa.me/966548839017?text=السلام عليكم، أريد الاستفسار من صيدلية ابو الجدائل البيطرية">واتساب</a>
     </div>
   </nav>
 
   <header class="hero">
     <div class="fade-in">
-      <span class="badge">🐾 حياكم </span>
-      <h1>منتجات بيطرية <span> </span></h1>
+      <span class="badge">
+        <span class="welcome-wrap">
+          <span>حياكم</span>
+          <span class="paw-run" aria-hidden="true">
+            <span>🐾</span><span>🐾</span><span>🐾</span><span>🐾</span><span>🐾</span>
+          </span>
+        </span>
+      </span>
+
+      <h1>منتجات بيطرية <span>بعناية واهتمام</span></h1>
       <p class="hero-text">
         صيدلية ابو الجدائل البيطرية توفر أدوية ومستلزمات بيطرية، مع إمكانية البحث عن المنتج
         والطلب مباشرة عبر واتساب لتأكيد التوفر والتوصيل.
@@ -1011,7 +955,7 @@
 
       <div class="hero-actions">
         <a class="btn btn-main" href="#products">تصفح المنتجات</a>
-        <a class="btn btn-light" href="https://wa.me/966548839017?text=السلام عليكم، أريد حجز استشارة بيطرية">استشارة بيطرية</a>
+        <a class="btn btn-light" href="#consultation">استشارة بيطرية</a>
       </div>
 
       <div class="mini-info">
@@ -1023,12 +967,7 @@
 
     <div class="hero-card fade-in delay-1">
       <div class="pharmacy-photo">
-        <!--
-          لإضافة صورة حقيقية:
-          ارفع صورة باسم pharmacy.jpg بجانب ملف index.html في GitHub.
-          إذا لم ترفع صورة، سيظهر التصميم الأخضر الجميل تلقائياً.
-        -->
-        <img src="pharmacy.png" alt="" onerror="this.style.display='none'" />
+        <img src="./pharmacy.png" alt="صيدلية ابو الجدائل البيطرية" onerror="this.style.display='none'" />
         <small>صيدلية ابو الجدائل البيطرية</small>
         <h2>اختر المنتج، ثم أرسل الطلب عبر واتساب</h2>
         <p>نؤكد لك السعر والتوفر وتكلفة التوصيل قبل تجهيز الطلب.</p>
@@ -1187,7 +1126,7 @@
       <div class="info-card" id="consultation">
         <h3>طريقة الطلب</h3>
         <p>اختر المنتج، اضغط واتساب، ثم نؤكد لك التوفر والسعر وتكلفة التوصيل قبل تجهيز الطلب.</p>
-        <a class="wa-btn" href="https://wa.me/966548839017?text=السلام عليكم، أريد طلب منتج من صيدلية الحاج.">ابدأ الطلب</a>
+        <a class="wa-btn" href="#searchArea">ابدأ الطلب</a>
       </div>
     </section>
   </main>
@@ -1251,8 +1190,6 @@
       applyFilter(this.value);
     });
 
-
-
     const nav = document.querySelector(".nav");
     const scrollProgress = document.getElementById("scrollProgress");
 
@@ -1280,7 +1217,6 @@
     }, { threshold: 0.16 });
 
     revealItems.forEach((item) => revealObserver.observe(item));
-
   </script>
 </body>
 </html>
