@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>صيدلية الحاج البيطرية</title>
+  <meta name="description" content="صيدلية الحاج البيطرية - أدوية ومستلزمات بيطرية، طلب عبر واتساب، توصيل حسب الموقع، واستشارة بيطرية." />
+  <style>
+    :root {
+      --main: #0f766e;
+      --dark: #134e4a;
+      --soft: #ecfdf5;
+      --gold: #f59e0b;
+      --gold-soft: #fff7ed;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --bg: #f8fafc;
+      --white: #ffffff;
+      --green: #16a34a;
+      --red: #dc2626;
+      --shadow: 0 18px 45px rgba(15, 118, 110, 0.10);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(15, 118, 110, 0.08), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(245, 158, 11, 0.08), transparent 32%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input { font-family: inherit; }
+
+    .top-note {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 8px 14px;
+      font-size: 13px;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.93);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(229, 231, 235, 0.85);
+    }
+
+    .nav-inner {
+      max-width: 1050px;
+      margin: auto;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--main), #14b8a6);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 25px;
+      font-weight: 900;
+      box-shadow: 0 12px 26px rgba(15, 118, 110, 0.22);
+      position: relative;
+    }
+
+    .logo::after {
+      content: "";
+      width: 12px;
+      height: 12px;
+      background: var(--gold);
+      border-radius: 50%;
+      position: absolute;
+      left: -2px;
+      bottom: -2px;
+      border: 3px solid white;
+    }
+
+    .brand-title {
+      color: var(--dark);
+      font-weight: 900;
+      font-size: 18px;
+      line-height: 1.2;
+    }
+
+    .brand-sub {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      font-size: 14px;
+      color: #374151;
+      align-items: center;
+    }
+
+    .nav-links a { transition: 0.2s; }
+    .nav-links a:hover { color: var(--main); }
+
+    .wa-top {
+      background: #25d366;
+      color: white;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 900;
+      font-size: 13px;
+      white-space: nowrap;
+      box-shadow: 0 10px 20px rgba(37, 211, 102, 0.20);
+    }
+
+    .hero {
+      max-width: 1050px;
+      margin: auto;
+      padding: 44px 16px 22px;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--white);
+      color: var(--main);
+      border: 1px solid #bdeee2;
+      border-radius: 999px;
+      padding: 7px 13px;
+      font-size: 13px;
+      font-weight: 900;
+      box-shadow: 0 10px 25px rgba(15, 118, 110, 0.07);
+      animation: floatSoft 3.5s ease-in-out infinite;
+    }
+
+    h1 {
+      margin: 14px 0 12px;
+      color: #102a27;
+      font-size: clamp(32px, 6vw, 54px);
+      line-height: 1.15;
+      letter-spacing: -1px;
+    }
+
+    .hero h1 span {
+      color: var(--main);
+      position: relative;
+    }
+
+    .hero h1 span::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 2px;
+      width: 100%;
+      height: 8px;
+      background: rgba(245, 158, 11, 0.24);
+      z-index: -1;
+      border-radius: 999px;
+    }
+
+    .hero-text {
+      color: #55606f;
+      font-size: 17px;
+      max-width: 650px;
+      margin: 0 0 20px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .btn {
+      border: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 16px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: 0.22s;
+      font-size: 14px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 13px 24px rgba(0,0,0,0.10);
+    }
+
+    .btn-main { background: var(--main); color: white; }
+    .btn-light { background: white; color: var(--main); border: 1px solid #bdeee2; }
+
+    .mini-info {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .mini-info span {
+      background: rgba(255,255,255,0.82);
+      border: 1px solid var(--line);
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: #475569;
+      font-size: 13px;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.88);
+      border: 1px solid rgba(229,231,235,0.9);
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+      padding: 18px;
+      position: relative;
+      min-height: 350px;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      background: rgba(15,118,110,0.10);
+      border-radius: 50%;
+      top: -70px;
+      left: -70px;
+    }
+
+    .hero-card::after {
+      content: "🐾";
+      position: absolute;
+      font-size: 135px;
+      opacity: 0.08;
+      left: 15px;
+      bottom: -35px;
+      transform: rotate(-15deg);
+    }
+
+    .glass-box {
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(135deg, rgba(15,118,110,0.96), rgba(20,184,166,0.86));
+      color: white;
+      border-radius: 26px;
+      padding: 22px;
+      margin-bottom: 14px;
+    }
+
+    .glass-box small { opacity: 0.9; }
+    .glass-box h2 { margin: 8px 0 10px; font-size: 26px; line-height: 1.3; }
+    .glass-box p { margin: 0; opacity: 0.95; font-size: 14px; }
+
+    .hero-products {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .hero-mini {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 14px;
+    }
+
+    .hero-mini-icon {
+      height: 78px;
+      border-radius: 18px;
+      background: var(--soft);
+      display: grid;
+      place-items: center;
+      font-size: 42px;
+      margin-bottom: 9px;
+    }
+
+    .hero-mini strong { display: block; font-size: 14px; color: var(--dark); }
+    .hero-mini span { color: var(--green); font-size: 12px; font-weight: 900; }
+
+    .container {
+      max-width: 1050px;
+      margin: auto;
+      padding: 12px 16px 58px;
+    }
+
+    .search-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 16px;
+      box-shadow: 0 15px 35px rgba(15, 118, 110, 0.07);
+      margin-bottom: 26px;
+    }
+
+    .search-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .search-title strong { color: var(--dark); }
+    .search-title span { font-size: 12px; color: var(--muted); }
+
+    .search-row { display: flex; gap: 10px; }
+
+    .search-row input {
+      flex: 1;
+      border: 1px solid var(--line);
+      background: #f9fafb;
+      border-radius: 16px;
+      padding: 14px 15px;
+      font-size: 15px;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    .search-row input:focus {
+      border-color: var(--main);
+      box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.11);
+      background: white;
+    }
+
+    .search-row button {
+      background: var(--main);
+      color: white;
+      border: 0;
+      border-radius: 16px;
+      padding: 0 18px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .section-head {
+      margin: 28px 0 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 12px;
+    }
+
+    .section-head h2 { margin: 0; color: var(--dark); font-size: 25px; }
+    .section-head p { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+
+    .clear-link {
+      color: var(--main);
+      font-size: 13px;
+      font-weight: 900;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 13px;
+    }
+
+    .cat {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 17px 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.22s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cat::after {
+      content: "";
+      position: absolute;
+      inset: auto 14px 0 14px;
+      height: 4px;
+      background: var(--main);
+      border-radius: 999px 999px 0 0;
+      opacity: 0;
+      transform: translateY(5px);
+      transition: 0.22s;
+    }
+
+    .cat:hover, .cat.active {
+      transform: translateY(-4px);
+      border-color: #99f6e4;
+      box-shadow: 0 12px 24px rgba(15,118,110,0.08);
+    }
+
+    .cat.active::after, .cat:hover::after {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .cat-icon {
+      width: 58px;
+      height: 58px;
+      margin: 0 auto 8px;
+      border-radius: 20px;
+      background: var(--soft);
+      display: grid;
+      place-items: center;
+      font-size: 31px;
+    }
+
+    .cat strong { display: block; color: var(--dark); font-size: 14px; }
+    .cat span { color: var(--muted); font-size: 12px; }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .product {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      transition: 0.22s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+      border-color: #c7f2e7;
+    }
+
+    .product-tag {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(255,255,255,0.88);
+      border: 1px solid var(--line);
+      color: var(--dark);
+      font-size: 11px;
+      font-weight: 900;
+      border-radius: 999px;
+      padding: 4px 9px;
+      z-index: 1;
+    }
+
+    .product-img {
+      height: 130px;
+      background: linear-gradient(135deg, #ecfdf5, #fff7ed);
+      border-radius: 20px;
+      display: grid;
+      place-items: center;
+      font-size: 50px;
+      margin-bottom: 11px;
+    }
+
+    .product h3 { margin: 0 0 6px; font-size: 17px; line-height: 1.45; color: #111827; }
+    .product p { margin: 0 0 10px; color: var(--muted); font-size: 13px; min-height: 45px; }
+
+    .product-bottom {
+      margin-top: auto;
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .price { color: var(--main); font-weight: 900; font-size: 18px; }
+
+    .stock {
+      color: var(--green);
+      background: #dcfce7;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .stock.out { color: var(--red); background: #fee2e2; }
+
+    .wa-btn, .ask-btn {
+      display: block;
+      text-align: center;
+      padding: 10px;
+      border-radius: 14px;
+      font-weight: 900;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    .wa-btn { background: #25d366; color: white; }
+    .ask-btn { background: #f3f4f6; color: #374151; }
+    .wa-btn:hover, .ask-btn:hover { transform: translateY(-1px); filter: brightness(0.98); }
+
+    .empty {
+      display: none;
+      margin-top: 12px;
+      border: 1px solid #fed7aa;
+      background: var(--gold-soft);
+      color: #9a3412;
+      border-radius: 18px;
+      padding: 15px;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-top: 28px;
+    }
+
+    .info-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: 0 12px 30px rgba(15,118,110,0.06);
+    }
+
+    .info-card.special {
+      background: radial-gradient(circle at top left, rgba(245,158,11,0.20), transparent 35%), white;
+    }
+
+    .info-card h3 { margin: 0 0 8px; color: var(--dark); font-size: 21px; }
+    .info-card p { margin: 0 0 14px; color: #55606f; font-size: 14px; }
+
+    .footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 24px 16px;
+    }
+
+    .footer strong { display: block; margin-bottom: 3px; }
+    .footer span { color: #ccfbf1; font-size: 13px; }
+
+    .floating {
+      position: fixed;
+      left: 16px;
+      bottom: 16px;
+      z-index: 70;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .chat-panel {
+      display: none;
+      width: 320px;
+      max-width: calc(100vw - 32px);
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.22);
+      overflow: hidden;
+    }
+
+    .chat-head { background: var(--main); color: white; padding: 13px 15px; font-weight: 900; }
+    .chat-body { padding: 14px; }
+    .chat-msg { background: #f3f4f6; border-radius: 16px; padding: 10px 12px; color: #374151; font-size: 14px; margin-bottom: 10px; }
+
+    .chat-option {
+      display: block;
+      width: 100%;
+      border: 1px solid #dbe8e5;
+      background: #f8fffd;
+      color: var(--dark);
+      border-radius: 14px;
+      padding: 10px;
+      text-align: right;
+      margin-top: 8px;
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .float-btn {
+      border: 0;
+      color: white;
+      border-radius: 999px;
+      padding: 13px 17px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 14px 30px rgba(0,0,0,0.18);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .float-chat { background: var(--main); }
+    .float-wa { background: #25d366; }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: showUp 0.7s ease forwards;
+    }
+
+    .delay-1 { animation-delay: 0.08s; }
+    .delay-2 { animation-delay: 0.16s; }
+    .delay-3 { animation-delay: 0.24s; }
+
+    @keyframes showUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes floatSoft {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; padding-top: 32px; }
+      .hero-card { min-height: auto; }
+      .products { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 620px) {
+      .top-note { font-size: 12px; }
+      .nav-inner { padding: 10px 12px; }
+      .brand-sub { display: none; }
+      .brand-title { font-size: 16px; }
+      .logo { width: 42px; height: 42px; }
+      .hero { padding: 28px 14px 18px; }
+      .hero-actions { display: grid; grid-template-columns: 1fr; }
+      .btn { width: 100%; }
+      .hero-card { display: none; }
+      .container { padding: 10px 14px 50px; }
+      .search-row { display: grid; grid-template-columns: 1fr; }
+      .search-row button { padding: 12px; }
+      .section-head { display: block; }
+      .clear-link { display: inline-block; margin-top: 6px; }
+      .categories { grid-template-columns: repeat(2, 1fr); }
+      .products { grid-template-columns: 1fr; }
+      .info-grid { grid-template-columns: 1fr; }
+      .floating { left: 10px; bottom: 10px; }
+      .float-wa { padding: 13px 15px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="top-note">الطلب عبر واتساب — التوصيل يحسب بعد إرسال موقع العميل</div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="brand" aria-label="صيدلية الحاج">
+        <div class="logo">+</div>
+        <div>
+          <div class="brand-title">صيدلية الحاج</div>
+          <div class="brand-sub">بيطرية | أدوية ومستلزمات</div>
+        </div>
+      </a>
+
+      <div class="nav-links">
+        <a href="#categories">الأقسام</a>
+        <a href="#products">المنتجات</a>
+        <a href="#delivery">التوصيل</a>
+        <a href="#consultation">الاستشارة</a>
+      </div>
+
+      <a class="wa-top" href="https://wa.me/966548839017?text=السلام عليكم، أريد الاستفسار من صيدلية الحاج">واتساب</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="fade-in">
+      <span class="badge">🐾 صيدلية بيطرية صغيرة وقريبة منك</span>
+      <h1>منتجات بيطرية <span>بأسلوب بسيط</span></h1>
+      <p class="hero-text">
+        صيدلية الحاج توفر أدوية ومستلزمات بيطرية، مع إمكانية البحث عن المنتج
+        والطلب مباشرة عبر واتساب لتأكيد التوفر والتوصيل.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-main" href="#products">تصفح المنتجات</a>
+        <a class="btn btn-light" href="https://wa.me/966548839017?text=السلام عليكم، أريد حجز استشارة بيطرية">استشارة بيطرية</a>
+      </div>
+
+      <div class="mini-info">
+        <span>✅ تأكيد التوفر</span>
+        <span>🚚 توصيل حسب الموقع</span>
+        <span>💬 واتساب مباشر</span>
+      </div>
+    </div>
+
+    <div class="hero-card fade-in delay-1">
+      <div class="glass-box">
+        <small>صيدلية الحاج البيطرية</small>
+        <h2>اختر المنتج، ثم أرسل الطلب عبر واتساب</h2>
+        <p>نؤكد لك السعر والتوفر وتكلفة التوصيل قبل تجهيز الطلب.</p>
+      </div>
+
+      <div class="hero-products">
+        <div class="hero-mini">
+          <div class="hero-mini-icon">🐱</div>
+          <strong>منتجات القطط</strong>
+          <span>متوفرة</span>
+        </div>
+        <div class="hero-mini">
+          <div class="hero-mini-icon">🐶</div>
+          <strong>منتجات الكلاب</strong>
+          <span>متوفرة</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="search-card fade-in delay-2" id="searchArea">
+      <div class="search-title">
+        <strong>ابحث عن منتج</strong>
+        <span>مثال: قطط، كلاب، مطهر، طفيليات</span>
+      </div>
+
+      <div class="search-row">
+        <input id="searchInput" type="search" placeholder="اكتب اسم المنتج أو نوع الحيوان..." />
+        <button onclick="runSearch()">بحث</button>
+      </div>
+    </section>
+
+    <section id="categories" class="fade-in delay-3">
+      <div class="section-head">
+        <div>
+          <h2>الأقسام</h2>
+          <p>أقسام قليلة وواضحة تناسب صيدلية صغيرة.</p>
+        </div>
+        <span class="clear-link" onclick="filterProducts('', this)">عرض كل المنتجات</span>
+      </div>
+
+      <div class="categories">
+        <div class="cat" onclick="filterProducts('قطط', this)">
+          <div class="cat-icon">🐱</div>
+          <strong>القطط</strong>
+          <span>أدوية وعناية</span>
+        </div>
+
+        <div class="cat" onclick="filterProducts('كلاب', this)">
+          <div class="cat-icon">🐶</div>
+          <strong>الكلاب</strong>
+          <span>فيتامينات ومستلزمات</span>
+        </div>
+
+        <div class="cat" onclick="filterProducts('مزارع', this)">
+          <div class="cat-icon">🐑</div>
+          <strong>المزارع</strong>
+          <span>أغنام ودواجن</span>
+        </div>
+
+        <div class="cat" onclick="filterProducts('عناية', this)">
+          <div class="cat-icon">🧴</div>
+          <strong>العناية</strong>
+          <span>مطهرات وتنظيف</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="products">
+      <div class="section-head">
+        <div>
+          <h2>المنتجات</h2>
+          <p>منتجات تجريبية، استبدلها لاحقاً بمنتجاتك الحقيقية.</p>
+        </div>
+      </div>
+
+      <div class="products">
+        <article class="product" data-search="قطط طفيليات براغيث علاج ادوية">
+          <span class="product-tag">متوفر</span>
+          <div class="product-img">🐱</div>
+          <h3>علاج طفيليات للقطط</h3>
+          <p>منتج بيطري يساعد في مكافحة الطفيليات. يرجى الاستفسار قبل الاستخدام.</p>
+          <div class="product-bottom">
+            <div class="price-row"><span class="price">45 ريال</span><span class="stock">متوفر</span></div>
+            <a class="wa-btn" href="https://wa.me/966548839017?text=السلام عليكم، أريد طلب علاج طفيليات للقطط بسعر 45 ريال. الرجاء تأكيد التوفر وتكلفة التوصيل.">اطلب عبر واتساب</a>
+          </div>
+        </article>
+
+        <article class="product" data-search="كلاب فيتامين مكمل غذائي نشاط">
+          <span class="product-tag">متوفر</span>
+          <div class="product-img">🐶</div>
+          <h3>فيتامينات للكلاب</h3>
+          <p>مكمل غذائي لدعم الصحة والنشاط، والسعر قابل للتحديث حسب المنتج.</p>
+          <div class="product-bottom">
+            <div class="price-row"><span class="price">60 ريال</span><span class="stock">متوفر</span></div>
+            <a class="wa-btn" href="https://wa.me/966548839017?text=السلام عليكم، أريد طلب فيتامينات للكلاب بسعر 60 ريال. الرجاء تأكيد التوفر وتكلفة التوصيل.">اطلب عبر واتساب</a>
+          </div>
+        </article>
+
+        <article class="product" data-search="عناية مطهر جروح تنظيف تعقيم">
+          <span class="product-tag">عناية</span>
+          <div class="product-img">🧴</div>
+          <h3>مطهر جروح بيطري</h3>
+          <p>مطهر للاستخدام الخارجي للحيوانات، مناسب للعناية بالجروح البسيطة.</p>
+          <div class="product-bottom">
+            <div class="price-row"><span class="price">35 ريال</span><span class="stock">متوفر</span></div>
+            <a class="wa-btn" href="https://wa.me/966548839017?text=السلام عليكم، أريد طلب مطهر جروح بيطري بسعر 35 ريال. الرجاء تأكيد التوفر وتكلفة التوصيل.">اطلب عبر واتساب</a>
+          </div>
+        </article>
+
+        <article class="product" data-search="مزارع اغنام ديدان طفيليات مواشي">
+          <span class="product-tag">استفسار</span>
+          <div class="product-img">🐑</div>
+          <h3>مضاد ديدان للأغنام</h3>
+          <p>منتج لقسم المزارع. يرجى التواصل لمعرفة التوفر والجرعة المناسبة.</p>
+          <div class="product-bottom">
+            <div class="price-row"><span class="price">80 ريال</span><span class="stock out">غير متوفر</span></div>
+            <a class="ask-btn" href="https://wa.me/966548839017?text=السلام عليكم، هل مضاد الديدان للأغنام متوفر حالياً؟">استفسر عن التوفر</a>
+          </div>
+        </article>
+
+        <article class="product" data-search="عناية شامبو قطط كلاب تنظيف رائحة">
+          <span class="product-tag">جديد</span>
+          <div class="product-img">🫧</div>
+          <h3>شامبو عناية</h3>
+          <p>شامبو للحيوانات الأليفة، مناسب للعناية بالنظافة والرائحة.</p>
+          <div class="product-bottom">
+            <div class="price-row"><span class="price">40 ريال</span><span class="stock">متوفر</span></div>
+            <a class="wa-btn" href="https://wa.me/966548839017?text=السلام عليكم، أريد طلب شامبو عناية بسعر 40 ريال. الرجاء تأكيد التوفر وتكلفة التوصيل.">اطلب عبر واتساب</a>
+          </div>
+        </article>
+
+        <article class="product" data-search="استشارة بيطرية دواء سؤال حالة علاج">
+          <span class="product-tag">استشارة</span>
+          <div class="product-img">🩺</div>
+          <h3>استشارة بيطرية</h3>
+          <p>استشارة برسوم يتم توضيحها عبر واتساب قبل البدء حسب الحالة.</p>
+          <div class="product-bottom">
+            <div class="price-row"><span class="price">حسب الحالة</span><span class="stock">واتساب</span></div>
+            <a class="wa-btn" href="https://wa.me/966548839017?text=السلام عليكم، أريد حجز استشارة بيطرية. الرجاء توضيح السعر وطريقة الدفع.">احجز استشارة</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="empty" id="emptyMsg">لم يتم العثور على المنتج. أرسل اسم المنتج عبر واتساب وسنساعدك.</div>
+    </section>
+
+    <section class="info-grid">
+      <div class="info-card special" id="delivery">
+        <h3>التوصيل</h3>
+        <p>سعر التوصيل لا يظهر داخل الموقع حالياً، ويتم تحديده بعد إرسال موقع العميل عبر واتساب.</p>
+        <a class="wa-btn" href="https://wa.me/966548839017?text=السلام عليكم، أريد معرفة تكلفة التوصيل إلى موقعي.">اسأل عن التوصيل</a>
+      </div>
+
+      <div class="info-card" id="consultation">
+        <h3>طريقة الطلب</h3>
+        <p>اختر المنتج، اضغط واتساب، ثم نؤكد لك التوفر والسعر وتكلفة التوصيل قبل تجهيز الطلب.</p>
+        <a class="wa-btn" href="https://wa.me/966548839017?text=السلام عليكم، أريد طلب منتج من صيدلية الحاج.">ابدأ الطلب</a>
+      </div>
+    </section>
+  </main>
+
+  <div class="floating">
+    <div class="chat-panel" id="chatPanel">
+      <div class="chat-head">مساعد صيدلية الحاج</div>
+      <div class="chat-body">
+        <div class="chat-msg">أهلاً بك 👋 اختر الخدمة المطلوبة:</div>
+        <button class="chat-option" onclick="sendWhatsApp('أريد البحث عن منتج')">🔎 البحث عن منتج</button>
+        <button class="chat-option" onclick="sendWhatsApp('أريد معرفة تكلفة التوصيل')">🚚 التوصيل</button>
+        <button class="chat-option" onclick="sendWhatsApp('أريد حجز استشارة بيطرية')">🩺 استشارة بيطرية</button>
+        <button class="chat-option" onclick="sendWhatsApp('أريد معرفة المنتجات المتوفرة')">🛒 المنتجات المتوفرة</button>
+      </div>
+    </div>
+
+    <button class="float-btn float-chat" onclick="toggleChat()">💬 شات</button>
+    <a class="float-btn float-wa" href="https://wa.me/966548839017?text=السلام عليكم، أريد التواصل مع صيدلية الحاج">واتساب</a>
+  </div>
+
+  <footer class="footer">
+    <strong>صيدلية الحاج البيطرية</strong>
+    <span>0548839017 — الطلب والاستفسار عبر واتساب</span>
+  </footer>
+
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const products = Array.from(document.querySelectorAll(".product"));
+    const emptyMsg = document.getElementById("emptyMsg");
+    const categories = Array.from(document.querySelectorAll(".cat"));
+
+    function normalizeText(text) {
+      return text
+        .toLowerCase()
+        .replace(/[أإآ]/g, "ا")
+        .replace(/ة/g, "ه")
+        .replace(/ى/g, "ي")
+        .trim();
+    }
+
+    function applyFilter(value) {
+      const query = normalizeText(value);
+      let visibleCount = 0;
+
+      products.forEach((product) => {
+        const text = normalizeText(product.innerText + " " + product.dataset.search);
+        const isVisible = query === "" || text.includes(query);
+        product.style.display = isVisible ? "flex" : "none";
+        if (isVisible) visibleCount++;
+      });
+
+      emptyMsg.style.display = visibleCount === 0 ? "block" : "none";
+    }
+
+    function filterProducts(value, element) {
+      searchInput.value = value;
+      applyFilter(value);
+      categories.forEach((cat) => cat.classList.remove("active"));
+      if (element && element.classList && element.classList.contains("cat")) {
+        element.classList.add("active");
+      }
+      document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function runSearch() {
+      categories.forEach((cat) => cat.classList.remove("active"));
+      applyFilter(searchInput.value);
+      document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+    }
+
+    searchInput.addEventListener("input", function () {
+      categories.forEach((cat) => cat.classList.remove("active"));
+      applyFilter(this.value);
+    });
+
+    function toggleChat() {
+      const panel = document.getElementById("chatPanel");
+      panel.style.display = panel.style.display === "block" ? "none" : "block";
+    }
+
+    function sendWhatsApp(message) {
+      const phone = "966548839017";
+      const text = encodeURIComponent("السلام عليكم، " + message);
+      window.open("https://wa.me/" + phone + "?text=" + text, "_blank");
+    }
+  </script>
+</body>
+</html>
