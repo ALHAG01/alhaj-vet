@@ -774,7 +774,7 @@
 
       .mobile-banner-card {
         width: 100%;
-        min-height: 132px;
+        min-height: 165px;
         border-radius: 24px;
         overflow: hidden;
         box-shadow: 0 16px 34px rgba(15, 118, 110, .18);
@@ -785,7 +785,7 @@
 
       .mobile-banner-card img {
         width: 100%;
-        height: 132px;
+        height: 165px;
         object-fit: cover;
         display: block;
       }
@@ -901,14 +901,16 @@
   <header class="hero">
     <div class="fade-in">
       <div class="moving-lines">
-        <div class="moving-line move-right-left">اختر المنتج ثم ارسل الطلب عبر واتساب</div>
+        <div class="moving-line move-right-left">اختر المنتج ثم ارسل الطلب عبر الموقع</div>
         <div class="moving-line move-left-right">نؤكد لك التوفر وتكلفه التوصيل قبل تجهيز الطلب</div>
       </div>
 
-      <h1>منتجات بيطرية <span>بعناية واهتمام</span></h1>
+      <h1>منتجات بيطرية <span></span></h1>
       <p class="hero-text">
         صيدلية ابو الجدائل البيطرية توفر أدوية ومستلزمات بيطرية، مع إمكانية البحث عن المنتج
-        والطلب مباشرة عبر واتساب لتأكيد التوفر والتوصيل.
+        والطلب مباشرة عبر موقعنا لتأكيد التوفر والتوصيل
+        كما يمكنكم طلب استشارة بيطرية مدفوعة،
+  ويتم توضيح الرسوم وطريقة الدفع قبل البدء.
       </p>
 
       <div class="hero-actions">
@@ -988,8 +990,8 @@
       <div class="catalog-panel" id="catalogPanel">
         <div class="catalog-head">
           <div class="catalog-title">
-            <h3>الحيوانات الكبيرة</h3>
-            <p>اضغط على نوع العلاج لعرض المنتجات. الاختيارات تبقى محفوظة حتى تقوم بمسحها.</p>
+            <h3 id="catalogTitle">الحيوانات الكبيرة</h3>
+             <p id="catalogDesc">اضغط على نوع العلاج لعرض المنتجات .</p>
           </div>
           <div class="selected-counter" id="selectedCounter">0 منتج محدد</div>
         </div>
@@ -1003,12 +1005,15 @@
     <section class="info-grid">
       <div class="info-card special" id="delivery">
         <h3>التوصيل</h3>
-        <p>سعر التوصيل لا يظهر لك داخل الموقع حاليا ويتم تحديده بعد تأكيد الطلبيه ثم ارسال الموقع ليتم احتساب سعر المنتجات وسعر التوصيل</p>
+        <p>
+  سعر التوصيل لا يظهر داخل الموقع حالياً، ويتم تحديده بعد تأكيد الطلب.
+  بعد ذلك يتم إرسال موقع العميل ليتم احتساب إجمالي تكلفة المنتجات والتوصيل.
+</p>
       </div>
 
       <div class="info-card" id="consultation">
         <h3>استشارة بيطرية</h3>
-        <p>للاستشارة، تواصل معنا عبر واتساب وسيتم توضيح التفاصيل قبل البدء.</p>
+        <p>للاستشارة، تواصل معنا عبر واتساب وسيتم توضيح الرسوم قبل البدء.</p>
         <a class="wa-btn" href="https://wa.me/966548839017?text=السلام عليكم، أريد حجز استشارة بيطرية. الرجاء توضيح التفاصيل.">احجز استشارة</a>
       </div>
     </section>
@@ -1022,7 +1027,7 @@
 
   <footer class="footer">
     <strong>صيدلية ابو الجدائل البيطرية</strong>
-    <span>0548839017 — الطلب والاستفسار عبر واتساب</span>
+    <span>طريق هدى الشام - حي المنار - خدمات جدة </span>
   </footer>
 
   <script>
@@ -1110,13 +1115,25 @@
     const selectedItems = new Set();
 
     function normalizeText(text) {
-      return text
-        .toLowerCase()
-        .replace(/[أإآ]/g, "ا")
-        .replace(/ة/g, "ه")
-        .replace(/ى/g, "ي")
-        .trim();
-    }
+  return text
+    .toString()
+    .toLowerCase()
+    .replace(/[أإآ]/g, "ا")
+    .replace(/ة/g, "ه")
+    .replace(/ى/g, "ي")
+    .replace(/[٠۰]/g, "0")
+    .replace(/[١۱]/g, "1")
+    .replace(/[٢۲]/g, "2")
+    .replace(/[٣۳]/g, "3")
+    .replace(/[٤۴]/g, "4")
+    .replace(/[٥۵]/g, "5")
+    .replace(/[٦۶]/g, "6")
+    .replace(/[٧۷]/g, "7")
+    .replace(/[٨۸]/g, "8")
+    .replace(/[٩۹]/g, "9")
+    .replace(/\s+/g, " ")
+    .trim();
+}
 
     function createMessage(items) {
       return "السلام عليكم، أريد طلب المنتجات التالية من قسم الحيوانات الكبيرة:%0A- " + items.join("%0A- ");
@@ -1235,6 +1252,8 @@
       if (query !== "") {
         categories.forEach((cat) => cat.classList.remove("active"));
         categories[0].classList.add("active");
+	document.getElementById("catalogTitle").textContent = "الحيوانات الكبيرة";
+	document.getElementById("catalogDesc").textContent = "نتائج البحث حسب الكلمة التي أدخلتها.";
         catalogPanel.classList.add("show");
         renderMedicines(query, true);
         document.getElementById("products").scrollIntoView({ behavior: "smooth" });
@@ -1251,6 +1270,8 @@
       }
       categories.forEach((cat) => cat.classList.remove("active"));
       categories[0].classList.add("active");
+	document.getElementById("catalogTitle").textContent = "الحيوانات الكبيرة";
+	document.getElementById("catalogDesc").textContent = "اضغط على نوع العلاج لعرض المنتجات.";
       catalogPanel.classList.add("show");
       renderMedicines(query, true);
     });
@@ -1258,6 +1279,8 @@
     function showLargeAnimals(keepScroll) {
       categories.forEach((cat) => cat.classList.remove("active"));
       categories[0].classList.add("active");
+	document.getElementById("catalogTitle").textContent = "الحيوانات الكبيرة";
+	document.getElementById("catalogDesc").textContent = "اضغط على نوع العلاج لعرض المنتجات. الاختيارات تبقى محفوظة حتى تقوم بمسحها.";
       searchInput.value = "";
       catalogPanel.classList.add("show");
       renderMedicines("", false);
@@ -1283,6 +1306,9 @@
       catalogPanel.classList.add("show");
       groupsContainer.innerHTML = "";
       emptyMsg.style.display = "block";
+	const sectionName = element.querySelector("strong").textContent;
+	document.getElementById("catalogTitle").textContent = sectionName;
+	document.getElementById("catalogDesc").textContent = "اضغط على النوع لعرض المنتجات. سيتم إضافة منتجات هذا القسم قريباً.";
       emptyMsg.textContent = "سيتم إضافة هذا القسم لاحقاً.";
       updateSelected();
       document.getElementById("products").scrollIntoView({ behavior: "smooth" });
