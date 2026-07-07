@@ -677,14 +677,114 @@
     .wa-btn:hover { transform: translateY(-1px); filter: brightness(0.98); }
 
     .footer {
-      background: var(--dark);
-      color: white;
-      text-align: center;
-      padding: 24px 16px;
-    }
+  background:
+    radial-gradient(circle at top right, rgba(20,184,166,.22), transparent 32%),
+    linear-gradient(135deg, var(--dark), #0b3b38);
+  color: white;
+  padding: 42px 16px 24px;
+  margin-top: 26px;
+  text-align: center;
+}
 
-    .footer strong { display: block; margin-bottom: 3px; }
-    .footer span { color: #ccfbf1; font-size: 13px; }
+.footer-inner {
+  max-width: 1120px;
+  margin: auto;
+}
+
+.footer-title {
+  margin-bottom: 24px;
+}
+
+.footer-mark {
+  display: block;
+  width: 48px;
+  height: 4px;
+  background: var(--gold);
+  border-radius: 999px;
+  margin: 0 auto 12px;
+}
+
+.footer-title h2 {
+  margin: 0;
+  font-size: 32px;
+  color: white;
+}
+
+.footer-title p {
+  margin: 8px auto 0;
+  color: #ccfbf1;
+  font-size: 14px;
+  max-width: 560px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 24px 0;
+}
+
+.contact-card {
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 24px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: right;
+  backdrop-filter: blur(10px);
+}
+
+.contact-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 16px;
+  background: rgba(255,255,255,.14);
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  flex: 0 0 auto;
+}
+
+.contact-card span {
+  display: block;
+  color: #99f6e4;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.contact-card strong {
+  display: block;
+  color: white;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.footer-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--main2), var(--main));
+  color: white;
+  padding: 12px 22px;
+  border-radius: 16px;
+  font-weight: 900;
+  box-shadow: 0 14px 28px rgba(0,0,0,.18);
+  transition: .22s;
+}
+
+.footer-whatsapp:hover {
+  transform: translateY(-2px);
+}
+
+.footer-bottom {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,.14);
+  color: #ccfbf1;
+  font-size: 13px;
+}
 
     .order-bar {
       position: fixed;
@@ -764,98 +864,189 @@
       .nav-links { display: none; }
     }
 
-    @media (max-width: 620px) {
-      .top-note { font-size: 12px; }
+   @media (max-width: 620px) {
+  .top-note { font-size: 12px; }
 
-      .mobile-banner {
-        display: block;
-        padding: 10px 12px 0;
-      }
+  .mobile-banner {
+    display: block;
+    padding: 10px 12px 0;
+  }
 
-      .mobile-banner-card {
-        width: 100%;
-        min-height: 165px;
-        border-radius: 24px;
-        overflow: hidden;
-        box-shadow: 0 16px 34px rgba(15, 118, 110, .18);
-        border: 1px solid rgba(15, 118, 110, .12);
-        background:
-          linear-gradient(135deg, rgba(15,118,110,.95), rgba(20,184,166,.82));
-      }
+  .mobile-banner-card {
+    width: 100%;
+    min-height: 165px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 16px 34px rgba(15, 118, 110, .18);
+    border: 1px solid rgba(15, 118, 110, .12);
+    background:
+      linear-gradient(135deg, rgba(15,118,110,.95), rgba(20,184,166,.82));
+  }
 
-      .mobile-banner-card img {
-        width: 100%;
-        height: 165px;
-        object-fit: cover;
-        display: block;
-      }
+  .mobile-banner-card img {
+    width: 100%;
+    height: 165px;
+    object-fit: cover;
+    display: block;
+  }
 
-      .nav-inner {
-        padding: 10px 12px;
-        justify-content: center;
-        text-align: center;
-      }
+  .nav-inner {
+    padding: 10px 12px;
+    justify-content: center;
+    text-align: center;
+  }
 
-      .brand {
-        flex-direction: row;
-        gap: 9px;
-        margin: auto;
-      }
+  .brand {
+    flex-direction: row;
+    gap: 9px;
+    margin: auto;
+  }
 
-      .brand-logo {
-        width: 44px;
-        height: 44px;
-        border-radius: 15px;
-        display: none;
-      }
+  .brand-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 15px;
+    display: none;
+  }
 
-      .brand-sub { display: none; }
+  .brand-sub { display: none; }
 
-      .brand-title {
-        font-size: 16px;
-        max-width: 260px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
+  .brand-title {
+    font-size: 16px;
+    max-width: 260px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-      .hero { padding: 24px 14px 18px; }
+  .hero { padding: 24px 14px 18px; }
 
-      .moving-line {
-        white-space: normal;
-        width: auto;
-        max-width: 100%;
-        font-size: 13px;
-      }
+  .moving-line {
+    white-space: normal;
+    width: auto;
+    max-width: 100%;
+    font-size: 13px;
+  }
 
-      .hero-actions { display: grid; grid-template-columns: 1fr; }
-      .btn { width: 100%; }
-      .container { padding: 10px 14px 88px; }
-      .search-title { display: block; }
-      .search-title span { display: block; margin-top: 3px; }
-      .search-row { display: grid; grid-template-columns: 1fr; }
-      .search-row button { padding: 12px; }
-      .section-head { display: block; }
-      .clear-link { display: inline-block; margin-top: 6px; }
-      .categories { grid-template-columns: repeat(2, 1fr); }
-      .catalog-head { display: block; }
-      .selected-counter { display: inline-block; margin-top: 8px; }
-      summary.type-header { align-items: flex-start; }
-      .type-count { white-space: normal; }
-      .medicine-item { grid-template-columns: auto 1fr; }
-      .single-order { grid-column: 1 / -1; width: 100%; }
-      .info-grid { grid-template-columns: 1fr; }
-      .order-bar {
-        left: 10px;
-        right: 10px;
-        bottom: 12px;
-        display: none;
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .order-bar.show { display: flex; }
-      .order-selected-btn, .clear-selected-btn { width: 100%; }
-    }
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
 
+  .btn { width: 100%; }
+
+  .container {
+    padding: 10px 14px 88px;
+  }
+
+  .search-title {
+    display: block;
+  }
+
+  .search-title span {
+    display: block;
+    margin-top: 3px;
+  }
+
+  .search-row {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .search-row button {
+    padding: 12px;
+  }
+
+  .section-head {
+    display: block;
+  }
+
+  .clear-link {
+    display: inline-block;
+    margin-top: 6px;
+  }
+
+  .categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .catalog-head {
+    display: block;
+  }
+
+  .selected-counter {
+    display: inline-block;
+    margin-top: 8px;
+  }
+
+  summary.type-header {
+    align-items: flex-start;
+  }
+
+  .type-count {
+    white-space: normal;
+  }
+
+  .medicine-item {
+    grid-template-columns: auto 1fr;
+  }
+
+  .single-order {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .order-bar {
+    left: 10px;
+    right: 10px;
+    bottom: 12px;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .order-bar.show {
+    display: flex;
+  }
+
+  .order-selected-btn,
+  .clear-selected-btn {
+    width: 100%;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer {
+    padding: 34px 14px 22px;
+  }
+
+  .footer-title h2 {
+    font-size: 26px;
+  }
+
+  .footer-title p {
+    font-size: 13px;
+  }
+
+  .contact-card {
+    align-items: flex-start;
+    padding: 16px;
+  }
+
+  .contact-card strong {
+    font-size: 14px;
+  }
+
+  .footer-whatsapp {
+    width: 100%;
+    padding: 12px;
+  }
+}
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: .01ms !important;
@@ -1025,10 +1216,49 @@
     <button class="clear-selected-btn" onclick="clearSelected()">مسح الاختيار</button>
   </div>
 
-  <footer class="footer">
-    <strong>صيدلية ابو الجدائل البيطرية</strong>
-    <span>طريق هدى الشام - حي المنار - خدمات جدة </span>
-  </footer>
+  <footer class="footer" id="contact">
+  <div class="footer-inner">
+    <div class="footer-title">
+      <span class="footer-mark"></span>
+      <h2>تواصل معنا</h2>
+      <p>نسعد بخدمتكم واستقبال طلباتكم واستفساراتكم عبر واتساب.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-icon">📍</div>
+        <div>
+          <span>العنوان</span>
+          <strong>طريق هدى الشام - حي المنار - خدمات جدة</strong>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-icon">📞</div>
+        <div>
+          <span>رقم التواصل</span>
+          <strong>0548839017</strong>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-icon">⏰</div>
+        <div>
+          <span>مواعيد العمل</span>
+          <strong>يتم استقبال الطلبات والاستفسارات عبر واتساب</strong>
+        </div>
+      </div>
+    </div>
+
+    <a class="footer-whatsapp" href="https://wa.me/966548839017?text=السلام عليكم، أريد التواصل مع صيدلية ابو الجدائل البيطرية.">
+      تواصل عبر واتساب
+    </a>
+
+    <div class="footer-bottom">
+      صيدلية ابو الجدائل البيطرية
+    </div>
+  </div>
+</footer>
 
   <script>
     const phoneNumber = "966548839017";
@@ -1271,7 +1501,7 @@
       categories.forEach((cat) => cat.classList.remove("active"));
       categories[0].classList.add("active");
 	document.getElementById("catalogTitle").textContent = "الحيوانات الكبيرة";
-	document.getElementById("catalogDesc").textContent = "اضغط على نوع العلاج لعرض المنتجات.";
+	document.getElementById("catalogDesc").textContent = "نتائج البحث حسب الكلمة التي أدخلتها.";
       catalogPanel.classList.add("show");
       renderMedicines(query, true);
     });
