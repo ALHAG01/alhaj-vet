@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alhag01.github.io/abujadael/sitemap.xml
